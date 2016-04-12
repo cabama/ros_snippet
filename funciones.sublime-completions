@@ -7,7 +7,6 @@
 		{"trigger": "Include Standar Message\tros_include", "contents": "#include \"std_msgs/${1:String}.h\";"},
 		{"trigger": "Include String Message\tros_include", "contents": "#include \"std_msgs/String.h\";"},
 
-		
 		{"trigger": "ROS_INFO\tros_func", "contents": "ROS_INFO(\"$1\");"},
 		{"trigger": "ROS_ERROR\tros_func", "contents": "ROS_ERROR(\"$1\");"},
 
@@ -33,7 +32,9 @@
 		{"trigger": "callback_custom_message\tros_func", "contents": "void ${1:functionCallback}(const  ${2:pakage_name}::${3:message}::ConstPtr& msg){\n\t$4\n}"},
 		{"trigger": "callback\tros_func", "contents": "void ${1:functionCallback}(const ${2:std_msgs}::${3:String}::ConstPtr& msg){\n\t$4\n}"},
 
-		{"trigger": "ros::ServiceClient_mensaje\tros_func", "contents": "ros::ServiceClient ${1:client} = nodo.serviceClient<${2:pakage_name}::${3:service_message}>(\"${4:service_name}\");"},
+		{"trigger": "ros::ServiceServer\tros_func", "contents": "ros::ServiceServer ${1:service} = nodo.advertiseService(\"${2:service_name}\", ${3:service_callback});"},
+		{"trigger": "ros::ServiceClient\tros_func", "contents": "ros::ServiceClient ${1:service} = nodo.serviceClient<${2:pakage_name}::${3:service_message}>(\"${4:service_name}\");"},
+		{"trigger": "ros::ServiceCallback\tros_func", "contents": "bool ${1:service_callback}(${2:pakage_name}::${3:service_message}::Request &req, ${2:pakage_name}::${3:service_message}::Response &res){\n\t$4\n\treturn true;\n}"},
 
 	]
 }
