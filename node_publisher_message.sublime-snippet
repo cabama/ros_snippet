@@ -1,0 +1,43 @@
+<snippet>
+	<content><![CDATA[#include "ros/ros.h"
+#include "${1:beginner_tutorials}/{$4:mensajeTest}.h"
+#include <sstream>
+
+/**
+ * This tutorial demonstrates simple sending of messages over the ROS system.
+ */
+int main(int argc, char **argv)
+{
+
+
+    ros::init(argc, argv, "${2:nodo_emisor}");
+    ros::NodeHandle nodo;
+    ROS_INFO("nodo_emisor creado y registrado");
+    ros::Publisher publicador = nodo.advertise<${1:beginner_tutorials}::{$4:mensajeTest}>("${3:topic_test}", 0);
+    ros::Duration seconds_sleep(1);
+
+
+  int count = 0;
+  while (ros::ok())
+  {
+    /**
+     * This is a message object. You stuff it with data, and then publish it.
+     */
+    beginner_tutorials::${4:mensajeTest} mensaje;
+    mensaje.numero = count;
+    publicador.publish(mensaje);
+
+    ros::spinOnce();
+
+    seconds_sleep.sleep();
+    ++count;
+  }
+
+
+  return 0;
+}]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>ROS_NODE_PUBLISHER_MESSAGE</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.c++</scope>
+</snippet>

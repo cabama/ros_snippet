@@ -1,0 +1,29 @@
+<snippet>
+	<content><![CDATA[#include "ros/ros.h"
+#include "${1:beginner_tutorials}/${2:tipo_servicio}.h"
+#include <cstdlib>
+
+int main (int argc, char **argv){
+    ros::init(argc, argv, "nodo_cliente");
+    ros::NodeHandle nodo;
+    ros::ServiceClient client = nodo.serviceClient<${1:beginner_tutorials}::${2:tipo_servicio}>("${3:servicio_pou}");
+    ${1:beginner_tutorials}::${2:tipo_servicio} mensaje_servicial;
+    mensaje_servicial.request.argumento1= 2;
+
+    if (client.call(mensaje_servicial)){
+        ROS_INFO("Respuesta del servicio: %d", (int)mensaje_servicial.response.resultado1);
+    }else{
+        ROS_ERROR("Un puto Fallo NOOOO!");
+        return 1;
+    }
+
+    ros::waitForShutdown();
+
+    return 0;
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>ROS_SERVICE_CLIENT</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.c++</scope>
+</snippet>
