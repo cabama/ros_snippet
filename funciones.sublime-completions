@@ -2,25 +2,36 @@
 	"scope": "source.c, source.cpp, source.c++",
 	"completions":
 	[
+		{"trigger": "Include Ros\tros_include", "contents": "#include <ros/ros.h>;"},
+		{"trigger": "Include Custom Message\tros_include", "contents": "#include \"${1:pakage_name}/${2:message}.h\";"},
+		{"trigger": "Include Standar Message\tros_include", "contents": "#include \"std_msgs/${1:String}.h\";"},
+		{"trigger": "Include String Message\tros_include", "contents": "#include \"std_msgs/String.h\";"},
+
+		
 		{"trigger": "ROS_INFO\tros_func", "contents": "ROS_INFO(\"$1\");"},
 		{"trigger": "ROS_ERROR\tros_func", "contents": "ROS_ERROR(\"$1\");"},
 
-		{"trigger": "waitForShutdown\tros_func", "contents": "ros::waitForShutdown();"},
-		{"trigger": "spin\tros_func", "contents": "ros::spin();"},
-		{"trigger": "spinOnce\tros_func", "contents": "ros::spinOnce();"},
-		{"trigger": "ok\tros_func", "contents": "ros::ok();"},
-		{"trigger": "Duration\tros_func", "contents": "Duration ${1:seconds_sleep}(${2:seconds});"},
+		{"trigger": "ros::waitForShutdown\tros_func", "contents": "ros::waitForShutdown();"},
+		{"trigger": "ros::spin\tros_func", "contents": "ros::spin();"},
+		{"trigger": "ros::spinOnce\tros_func", "contents": "ros::spinOnce();"},
+		{"trigger": "ros::ok\tros_func", "contents": "ros::ok();"},
+		{"trigger": "ros::sleep\tros_func", "contents": "ros::sleep();"},
+		{"trigger": "ros::Duration\tros_func", "contents": "ros::Duration ${1:seconds_sleep}(${2:seconds});"},
+		{"trigger": "ros::Rate\tros_func", "contents": "ros::Rate loop_rate(${1:10});"},
 		
-		{"trigger": "service_custom\tmessage", "contents": "${1:pakage_name}::${2:service} ${3:variable_service};"},
-		{"trigger": "message_custom\tmessage", "contents": "${1:pakage_name}::${2:service} ${3:variable_service};"},
+		{"trigger": "service_custom\tmessage", "contents": "${1:pakage_name}::${2:message} ${3:variable_service};"},
+		{"trigger": "message_custom\tmessage", "contents": "${1:pakage_name}::${2:message} ${3:variable_message};"},
+		{"trigger": "message\tmessage", "contents": "${1:std_msgs}::${2:message} ${3:variable_message};"},
 		{"trigger": "request\tmessage", "contents": "request"},
 		{"trigger": "response\tmessage", "contents": "response"},
 
-		{"trigger": "init_node\tros_func", "contents": "ros::init(argc, argv, \"${1:nodo_name}\");"},
-		{"trigger": "NodeHandle\tros_func", "contents": "ros::NodeHandle ${1:nodo};"},
-		{"trigger": "Publisher_custom_message\tros_func", "contents": "ros::Publisher ${1:publisher_variable} = nodo.advertise<${2:pakage_name}::${3:message}>(\"${4:topic_name}\", 0);"},
+		{"trigger": "ros::init_node\tros_func", "contents": "ros::init(argc, argv, \"${1:nodo_name}\");"},
+		{"trigger": "ros::NodeHandle\tros_func", "contents": "ros::NodeHandle ${1:nodo};"},
+		{"trigger": "Publisher_custom_message\tros_func", "contents": "ros::Publisher ${1:publisher_variable} = ${2:nodo}.advertise<${3:pakage_name}::${4:message}>(\"${5:topic_name}\", ${6:0});"},
 		{"trigger": "publish\tros_func", "contents": "publish(${1:variable_message});"},
-
+		{"trigger": "ros::Subscriber\tros_func", "contents": "ros::Subscriber ${1:subscriber_variable} = ${2:nodo}.subscribe(\"${3:topic_name}\",${4:0}, ${5:functionCallback});"},
+		{"trigger": "callback_custom_message\tros_func", "contents": "void ${1:functionCallback}(const  ${2:pakage_name}::${3:message}::ConstPtr& msg){\n\t$4\n}"},
+		{"trigger": "callback\tros_func", "contents": "void ${1:functionCallback}(const ${2:std_msgs}::${3:String}::ConstPtr& msg){\n\t$4\n}"},
 
 		{"trigger": "ros::ServiceClient_mensaje\tros_func", "contents": "ros::ServiceClient ${1:client} = nodo.serviceClient<${2:pakage_name}::${3:service_message}>(\"${4:service_name}\");"},
 
