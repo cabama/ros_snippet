@@ -1,0 +1,10 @@
+{
+	"scope": "CMakeLists.txt",
+	"completions":
+	[
+		{"trigger": "Include Ros\tros_include", "contents": "#include <ros/ros.h>;"},
+		{"trigger": "Include Custom Message\tros_include", "contents": "#include \"${1:pakage_name}/${2:message}.h\";"},
+		{"trigger": "Include Standar Message\tros_include", "contents": "#include \"std_msgs/${1:String}.h\";"},
+		{"trigger": "Include String Message\tros_include", "contents": "#include \"std_msgs/String.h\";"},
+	]
+}

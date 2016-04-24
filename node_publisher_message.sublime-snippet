@@ -1,6 +1,6 @@
 <snippet>
 	<content><![CDATA[#include "ros/ros.h"
-#include "${1:beginner_tutorials}/{$4:mensajeTest}.h"
+#include "${1:beginner_tutorials}/${2:mensajeTest}.h"
 #include <sstream>
 
 /**
@@ -10,10 +10,10 @@ int main(int argc, char **argv)
 {
 
 
-    ros::init(argc, argv, "${2:nodo_emisor}");
+    ros::init(argc, argv, "${3:nodo_emisor}");
     ros::NodeHandle nodo;
     ROS_INFO("nodo_emisor creado y registrado");
-    ros::Publisher publicador = nodo.advertise<${1:beginner_tutorials}::{$4:mensajeTest}>("${3:topic_test}", 0);
+    ros::Publisher publicador = nodo.advertise<${1:beginner_tutorials}::${2:mensajeTest}>("${4:topic_test}", 0);
     ros::Duration seconds_sleep(1);
 
 
@@ -23,7 +23,7 @@ int main(int argc, char **argv)
     /**
      * This is a message object. You stuff it with data, and then publish it.
      */
-    beginner_tutorials::${4:mensajeTest} mensaje;
+    ${1:beginner_tutorials}::${2:mensajeTest} mensaje;
     mensaje.numero = count;
     publicador.publish(mensaje);
 
